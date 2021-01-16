@@ -9,6 +9,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+	"time"
 )
 
 type date struct {
@@ -20,14 +21,29 @@ type date struct {
 func main() {
 
 	//获取参数
+	//var url = flag.String("url", "http://172.16.96.57:12345/detection", "input your url")
 	var url = flag.String("url", "http://172.16.96.57:12345/meter", "input your url")
 	var token = flag.String("token", "bonccvlab", "input your token")
 	var msg = flag.String("msg", "1.jpg", "input your photo formate")
-	var photo = flag.String("photo", "./abc.png", "input your photo address")
+	var photo = flag.String("photo", "./photo4.jpg", "input your photo address")
 	flag.Parse()
-	fmt.Println(*token, *msg, *photo)
+	//fmt.Println(*token, *msg, *photo)
 
-	Objfile, err := os.Open(*photo)
+	//now_time := time.Now()main
+
+	for i := 0; i < 9; i++ {
+
+		now_time := time.Now()
+		CreateInfo(*url, *token, *msg, *photo)
+		fmt.Printf("执行消耗的时间为:%v", now_time.Sub(time.Now()))
+	}
+
+	return
+
+}
+
+func CreateInfo(url, token, msg, photo string) {
+	Objfile, err := os.Open(photo)
 	defer Objfile.Close()
 	if err != nil {
 		fmt.Println(err)
@@ -42,8 +58,8 @@ func main() {
 	//fmt.Println(encodestring)
 
 	var info = date{
-		Msg:   *msg,
-		Token: *token,
+		Msg:   msg,
+		Token: token,
 	}
 
 	info.Photobase64 = append(info.Photobase64, encodestring)
@@ -52,14 +68,12 @@ func main() {
 	contentType := "application/json"
 	//url := "http://127.0.0.1:8000"
 
-	res, err := postSend(*url, info, contentType)
+	res, err := postSend(url, info, contentType)
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 	fmt.Println("result: ", res)
-	return
-
 }
 
 func postSend(url string, info date, contentType string) (string, error) {
@@ -84,6 +98,6 @@ func postSend(url string, info date, contentType string) (string, error) {
 		return "", err
 	}
 
-	fmt.Println(resp.StatusCode)
+	//fmt.Println(resp.StatusCode)
 	return string(result), err
 }
