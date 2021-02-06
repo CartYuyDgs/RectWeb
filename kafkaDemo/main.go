@@ -108,16 +108,6 @@ func glice(product sarama.AsyncProducer) error {
 	return nil
 }
 
-//func getConfig() {
-//
-//	flag.StringVar(&LocalAddr, "local_address", LocalAddr, "input your localdir")
-//	flag.StringVar(&LocalDir, "localDir", LocalDir, "input your local address")
-//	flag.StringVar(&Topic, "topic", Topic, "input your kafka topic")
-//	flag.Parse()
-//
-//	fmt.Printf("--*--*--*--&-imagelocal: %s, localaddress: %s, topic: %s -&--*--*--*--\n", LocalDir, LocalAddr, Topic)
-//}
-
 func send2kafka(product sarama.AsyncProducer, photo string) error {
 
 	log.Printf("Info: Image %s are send to kafka.", photo)
@@ -245,7 +235,7 @@ func configData(photo string) (*KafkaData, error) {
 	}
 
 	//base64
-	buffer := make([]byte, 10000000)
+	buffer := make([]byte, 30000000)
 	n, _ := Objfile.Read(buffer)
 	fmt.Println("photo len:", n)
 

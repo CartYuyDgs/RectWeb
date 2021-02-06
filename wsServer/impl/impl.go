@@ -7,15 +7,30 @@ import (
 	"sync"
 )
 
-type NodeMessage struct {
-	NodeName         string  `json:"nodename"`
-	CPUavailability  float64 `json:"cpu"`
-	MemAvailability  float64 `json:"mem"`
-	DiskAvailability float64 `json:"disk"`
-	NumNetwork       float64 `json:"network"`
-	NodeStatus       bool    `json:"nodestatus"`
-	NodeType         int     `json:"nodetype"`
-	OwnCluser        string  `json:"cliser"`
+//主机信息
+type HostInfo struct {
+	HostName        string     `json: "hostname"`
+	Cpu             string     `json: "cpu"`
+	Mem             string     `json: "mem"`
+	Disk            string     `json: "disk"`
+	OperationSystem string     `json: "operation"`
+	Kernel          string     `json: "kernel"`
+	NicNum          int        `json: "nicnum"`
+	ManageNic       string     `json: "managenic"`
+	ManageIP        string     `json: "manageIP"`
+	Nci             []*NciInfo `json: "ncis"`
+}
+
+//网卡信息
+type NciInfo struct {
+	Pci           string `json: "pci"`
+	NciDriver     string `json: "ncidriver"`
+	DriverVersion string `json: "driverversion"`
+	NciName       string `json: "nciname"`
+	Bandwidth     string `json: "bandwidth"`
+	NciModel      string `json: "ncimodel"`
+	LinkStatus    string `json: "linkstatus"`
+	MAC           string `json: "mac"`
 }
 
 const (

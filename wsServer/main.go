@@ -65,11 +65,11 @@ func wsHandler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	http.HandleFunc("/ws", wsHandler)
-	http.ListenAndServe(":8888", nil)
+	http.ListenAndServe("172.16.91.173:8888", nil)
 }
 
-func getInfo(info []byte) (impl.NodeMessage, error) {
-	msg := impl.NodeMessage{}
+func getInfo(info []byte) (impl.HostInfo, error) {
+	msg := impl.HostInfo{}
 	err := json.Unmarshal(info, &msg)
 	return msg, err
 }
