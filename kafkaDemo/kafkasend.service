@@ -1,0 +1,13 @@
+[Unit]
+Description=send images info to kafka
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/root/yuy/kafkaDemo/win_x86_68_amd64 -localDir=/home/bonc/images/
+RestartSec=5s
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,13 @@
+[Unit]
+Description=ffmpeg rtsp_transport service
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+ExecStart=ffmpeg -rtsp_transport tcp  -re  -thread_queue_size 512 -i rtsp://192.168.1.11/live/ch00_1 -rtsp_transport tcp -vcodec copy -an -f rtsp rtsp://172.16.96.57/camera01
+RestartSec=5s
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

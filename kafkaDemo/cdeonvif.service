@@ -1,0 +1,14 @@
+[Unit]
+Description=cdeonvif Image service
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=forking
+Enviroment="LD_LIBRARY_PATH=/home/nvidia/boncAI/bin/linuxbin/"
+ExecStart=/home/nvidia/boncAI/bin/linuxbin/cdeonvif test
+RestartSec=5s
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

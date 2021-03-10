@@ -1,0 +1,4 @@
+{"level":"debug","ts":"2021-03-08T09:26:19.247+0800","caller":"klogs/main.go:37","msg":"log3 debug"}
+{"level":"info","ts":"2021-03-08T09:26:19.269+0800","caller":"klogs/main.go:38","msg":"log3 info"}
+{"level":"error","ts":"2021-03-08T09:26:19.270+0800","caller":"klogs/main.go:39","msg":"log3 error"}
+{"level":"warn","ts":"2021-03-08T09:26:19.270+0800","caller":"klogs/main.go:40","msg":"log3 warnning...."}

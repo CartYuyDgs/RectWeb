@@ -1,0 +1,6 @@
+{
+  "host_name": "mec54",
+  "frequency"   : 5 ,
+  "nic_frequency" : 1,
+  "log_file"    : "./logs/logs.log"
+}
